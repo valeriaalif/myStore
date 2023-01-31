@@ -5,6 +5,7 @@ import com.api.domain.repository.ProductRepository;
 import com.api.persistence.crud.ProductoCrudRepository;
 import com.api.persistence.entity.Producto;
 import com.api.persistence.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +13,9 @@ import java.util.Optional;
 
 @Repository
 public class ProductoRepository implements ProductRepository {
+    @Autowired
     private ProductoCrudRepository productoCrudRepository;
+    @Autowired
     private ProductMapper mapper;
      @Override
     public List <Producto> getAll(){
@@ -21,13 +24,13 @@ public class ProductoRepository implements ProductRepository {
 
     }
     @Override
-    public Optional <List<Product>> getByCategory(int categoryId){
+    public Optional <List<Producto>> getByCategory(int categoryId){
          List<Producto> productos = productoCrudRepository.findByIdCategoriaOrderByNombreAsc(categoryId);
         return Optional.of(mapper.toProducts(productos));
     }
     @Override
 
-    public Optional<List<Product>> getScarseProducts(int quantity){
+    public Optional<List<Producto>> getScarseProducts(int quantity){
       Optional<List<Product>> productos =  productoCrudRepository.findByCantidadStockLessThanAndEstado(quantity);
          return productos.map(prods -> mapper.toProducts(prods));
     }
