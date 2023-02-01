@@ -18,7 +18,7 @@ public class ProductoRepository implements ProductRepository {
     @Autowired
     private ProductMapper mapper;
      @Override
-    public List <Producto> getAll(){
+    public List<Product> getAll(){
         List<Producto> productos = (List<Producto>) productoCrudRepository.findAll();
         return mapper.toProducts(productos);
 

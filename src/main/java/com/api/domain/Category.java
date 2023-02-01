@@ -1,10 +1,13 @@
 package com.api.domain;
 
+import com.api.persistence.entity.Producto;
+
+import java.util.List;
+
 public class Category {
     private int categoryId;
     private String category;
     private boolean active;
-
     public int getCategoryId() {
         return categoryId;
     }
@@ -28,4 +31,7 @@ public class Category {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+
+
 }
